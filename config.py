@@ -1,6 +1,6 @@
 class Config:
-
-    pass
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:jimi@localhost/blog'
 
 class ProdConfig(Config):
 
