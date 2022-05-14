@@ -4,6 +4,16 @@
 
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+
+{% endblock %}
+
+{% block script %}
+
+    {{ super() }}
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 {% endblock %}
 
