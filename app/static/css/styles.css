@@ -10,7 +10,7 @@ body{
 }
 
 #logo{
-    color: #42FF00;
+    color: #19be07;;
 }
 
 #p{
@@ -46,7 +46,7 @@ label{
 
 .redirect a{
     text-decoration: none;
-    color: #42FF00;
+    color: #77ff00;
     font-weight: 300;
 }
  
@@ -63,6 +63,7 @@ label{
 
 #pic-p{
     height: 40vh;
+    width: 50vh;
     border-radius: 50%;
 }
 
