@@ -1,6 +1,7 @@
 import urllib.request, json
 from app.models import Quote
 
+
 def get_Quote():
 
     base_url = 'http://quotes.stormconsultancy.co.uk/random.json'

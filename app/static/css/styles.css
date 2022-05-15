@@ -28,6 +28,28 @@ body{
     display: block;
 }
 
+/* FORMS */
+
+form{
+    margin-top: 10vh;
+}
+
+label{
+    color: white;
+    font-weight: 400;
+}
+
+.redirect{
+    color: white;
+    margin-top: 10px;
+}
+
+.redirect a{
+    text-decoration: none;
+    color: #42FF00;
+    font-weight: 300;
+}
+
 @media (min-width: 768px) {
 
     #p{
