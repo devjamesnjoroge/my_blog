@@ -55,6 +55,7 @@ class Post(db.Model):
     author = db.Column(db.String(255))
     time = db.Column(db.DateTime, default = datetime.now )
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    tags = db.Column(db.String(255))
 
     def save_post(self):
         db.session.add(self)
