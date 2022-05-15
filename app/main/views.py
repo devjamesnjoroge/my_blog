@@ -11,6 +11,8 @@ def index():
 
     quote = get_Quote()
 
+    posts = Post.query.all()
+
     admin = None
 
     if current_user.is_authenticated:
@@ -20,7 +22,7 @@ def index():
             admin = True
 
     title = 'JAYMMY-TECH'
-    return render_template('index.html', title = title, quote = quote, admin = admin)
+    return render_template('index.html', title = title, quote = quote, admin = admin, posts = posts)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -60,7 +62,7 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
-@main.route('/post')
+@main.route('/post', methods = ['GET', 'POST'])
 @login_required
 def post():
     create_post = CreateBlog()
