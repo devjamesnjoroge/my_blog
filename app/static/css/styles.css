@@ -49,6 +49,12 @@ label{
     color: #42FF00;
     font-weight: 300;
 }
+ 
+    /*PROFILE */
+
+.bio{
+    color: white;
+}
 
 @media (min-width: 768px) {
 

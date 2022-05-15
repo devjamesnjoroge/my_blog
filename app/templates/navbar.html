@@ -29,8 +29,8 @@
                 </li>
 
                 <li>
-                    <a id="p" href="/"></a>
-                    <a id="p-txt" href="/">Profile</a>
+                    <a id="p" href="{{url_for('main.profile',uname=current_user.username)}}"></a>
+                    <a id="p-txt" href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a>
                 </li>
                
                 {% else %}
