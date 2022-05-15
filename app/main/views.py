@@ -67,6 +67,9 @@ def update_pic(uname):
 def post():
     create_post = CreateBlog()
 
+    if current_user._get_current_object().email != 'james.njoroge@student.moringaschool.com':
+        abort(403)
+
     if create_post.validate_on_submit():
 
         new_post = Post(
