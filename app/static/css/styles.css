@@ -56,6 +56,16 @@ label{
     color: white;
 }
 
+.btn-pic{
+    color: #11161E;
+    margin-top: 1.5rem;
+}
+
+#pic-p{
+    height: 40vh;
+    border-radius: 50%;
+}
+
 @media (min-width: 768px) {
 
     #p{

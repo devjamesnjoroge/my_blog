@@ -6,9 +6,18 @@
     <div class="row">
         <div class="col-md-6 bio">
             {% if user.profile_pic_path %}
-            <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+            <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail img-responsive w-50 img-fluid" id="pic-p">
             {%else%}
             <p>No profile picture</p>
+            {% endif %}
+
+
+            {% if user == current_user %}
+            <form  action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
+        
+              <input type="file"  name="photo" class="form-control" required>
+              <input class="btn-pic" type="submit">
+            </form>
             {% endif %}
            
         </div>
