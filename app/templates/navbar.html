@@ -28,10 +28,20 @@
                     <a href="{{ url_for('auth.logout') }}">Logout</a>
                 </li>
 
+                {% if admin %}
+
+                <li >
+                    <a href="{{ url_for('main.post') }}">Admin Panel</a>
+                </li>
+                
+                {% else %}
+
                 <li>
                     <a id="p" href="{{url_for('main.profile',uname=current_user.username)}}"></a>
                     <a id="p-txt" href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a>
                 </li>
+
+                {% endif %}
                
                 {% else %}
 

@@ -1,18 +1,26 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import User
+from ..models import Post, User
 from ..requests import get_Quote
 from .. import db, photos
-from .forms import UpdateProfile
-from flask_login import login_required
+from .forms import CreateBlog, UpdateProfile
+from flask_login import current_user, login_required
 
 @main.route('/')
 def index():
 
     quote = get_Quote()
 
+    admin = None
+
+    if current_user.is_authenticated:
+
+        if current_user._get_current_object().email == 'james.njoroge@student.moringaschool.com':
+
+            admin = True
+
     title = 'JAYMMY-TECH'
-    return render_template('index.html', title = title, quote = quote)
+    return render_template('index.html', title = title, quote = quote, admin = admin)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -51,3 +59,24 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+@main.route('/post')
+@login_required
+def post():
+    create_post = CreateBlog()
+
+    if create_post.validate_on_submit():
+
+        new_post = Post(
+            title = create_post.title.data,
+            blog = create_post.blog.data,
+            author = create_post.author.data,
+            tags = create_post.tags.data,
+            user_id = current_user._get_current_object().id
+            )
+
+        new_post.save_post()
+
+        return redirect(url_for('main.index'))
+
+    return render_template('post.html', create_post = create_post)
