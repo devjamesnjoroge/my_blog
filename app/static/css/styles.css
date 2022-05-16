@@ -52,6 +52,14 @@ body{
     color: white;
 }
 
+.text-gold{
+    color: gold;
+}
+
+.mt-10{
+    margin-top: 5vh;
+}
+
 /* FORMS */
 
 form{
