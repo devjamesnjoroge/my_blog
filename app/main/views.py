@@ -85,3 +85,10 @@ def post():
         return redirect(url_for('main.index'))
 
     return render_template('post.html', create_post = create_post)
+
+@main.route('/post/page/<int:post_id>')
+def page(post_id):
+
+    post = Post.query.filter_by(id = post_id).first()
+
+    return render_template('page.html', post = post)
