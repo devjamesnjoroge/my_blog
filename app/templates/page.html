@@ -13,8 +13,19 @@
             <h4>{{ post.title }}</h4>
 
             <hr>
+            <div class="base-post d-flex">
+                <strong>Author :</strong>
+                <h4>{{ post.author }}</h4>
+            </div>
+            <hr>
     
             <p>{{ post.blog }}</p>
+
+            <div class="blog-post">
+                <strong>Time</strong>
+                <h5>{{ post.time }}</h5>
+            </div>
+            <a href="{{url_for('main.comments', post_id = post.id)}}" class="btn btn-primary">Comment</a>
         </div>
         <div class="col-sm-2"></div>
 

@@ -1,9 +1,9 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import Post, User
+from ..models import Post, User, Comment
 from ..requests import get_Quote
 from .. import db, photos
-from .forms import CreateBlog, UpdateProfile
+from .forms import CreateBlog, UpdateProfile, submitComment
 from flask_login import current_user, login_required
 
 @main.route('/')
@@ -92,3 +92,19 @@ def page(post_id):
     post = Post.query.filter_by(id = post_id).first()
 
     return render_template('page.html', post = post)
+
+
+@main.route('/comment/<int:post_id>', methods = ['POST','GET'])
+@login_required
+def comments(post_id):
+    form = submitComment()
+    post = Post.query.get(post_id)
+    all_comments = Comment.query.filter_by(post_id = post_id).all()
+    if form.validate_on_submit():
+        comment = form.comment.data
+        post_id = post_id
+        user_id = current_user._get_current_object().id
+        new_comment = Comment(comment = comment,user_id = user_id,post_id = post_id)
+        new_comment.save_c()
+        return redirect(url_for('.comments', post_id = post_id))
+    return render_template('comments.html', form =form, post = post,all_comments=all_comments)

@@ -26,6 +26,7 @@ class User(UserMixin, db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     posts = db.relationship('Post', backref = 'user', lazy = 'dynamic')
+    comments = db.relationship('Comment', backref = 'user', lazy = 'dynamic')
     pass_secure = db.Column(db.String(255))
     @property
     def password(self):
@@ -55,6 +56,7 @@ class Post(db.Model):
     author = db.Column(db.String(255))
     time = db.Column(db.DateTime, default = datetime.now )
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comments = db.relationship('Comment', backref = 'post', lazy = 'dynamic')
     tags = db.Column(db.String(255))
 
     def save_post(self):
@@ -67,5 +69,28 @@ class Post(db.Model):
 
     def __repr__(self):
         return f'{Post.id}'
+
+class Comment(db.Model):
+
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.Text(),nullable = False)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
+    post_id = db.Column(db.Integer,db.ForeignKey('posts.id'),nullable = False)
+
+    def save_c(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_comments(cls,post_id):
+        comments = Comment.query.filter_by(post_id=post_id).all()
+
+        return comments
+
+
+    def __repr__(self):
+        return f'comment:{self.comment}'
 
 

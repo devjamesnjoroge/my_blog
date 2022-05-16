@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 col-1"></div>
+        <div class="col-sm-8 col-10">
+
+            {% if all_comments %}
+                    <h3 class="text-center text-white" id="coms">All comments for the post</h3>
+                    {% for comment in all_comments %}
+                       <div class="card w-90 mb-3" >
+                           <div class="card-body text-white">
+                            <h5>{{comment.post.title}}</h5>
+                             <p class="card-title">{{ comment.comment }}</p>
+                             <p class="card-text">--- {{comment.user.username}}</p>
+                           </div>
+                       </div>
+
+                {% endfor %}
+            {% endif %}
+         
+            {{ wtf.quick_form(form) }}
+        </div>
+        <div class="col-sm-2 col-1"></div>
+    </div>
+</div>
+
+
+{% endblock %}

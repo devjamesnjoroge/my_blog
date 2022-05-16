@@ -14,3 +14,8 @@ class CreateBlog(FlaskForm):
     tags = StringField('Hashtags for blog topics', validators=[DataRequired()])
 
     submit = SubmitField('Upload Blog')
+
+
+class submitComment(FlaskForm):
+    comment = TextAreaField('Leave a message',validators=[DataRequired()])
+    submit = SubmitField('Comment')

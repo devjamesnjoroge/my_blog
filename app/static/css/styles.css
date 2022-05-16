@@ -42,6 +42,16 @@ body{
     display: block;
 }
 
+.base-post{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.text-white{
+    color: white;
+}
+
 /* FORMS */
 
 form{
