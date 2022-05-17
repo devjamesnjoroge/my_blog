@@ -60,6 +60,10 @@ body{
     margin-top: 5vh;
 }
 
+.mb-10{
+    margin-bottom: 10vh;
+}
+
 /* FORMS */
 
 form{
